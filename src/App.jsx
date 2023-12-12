@@ -7,7 +7,7 @@ export default function LandingPage() {
     <header>
       <Nav />
     </header>
-    <div className="overflow-auto" id="ContentCenter"> <Outlet/> </div>
+    <div className="overflow-auto relative top-40" id="ContentCenter"> <Outlet/> </div>
     </>
   );
 }

@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 export default function Nav() {
   return (
     <>
-      <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+      <nav class="sticky bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Resident2D
           </span>
           <div class="flex md:order-2">
-            <button
+            <button id="searchbar"
               type="button"
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
@@ -89,25 +89,22 @@ export default function Nav() {
             id="navbar-sticky"
           >
             <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
+              <li class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black ">
                 <NavLink
-                  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black "
                   to="Home"
                 >
                   Home
                 </NavLink>
               </li>
-              <li>
+              <li class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black ">
                 <NavLink
-                  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black"
                   to="Houses"
                 >
                   Houses
                 </NavLink>
               </li>
-              <li>
+              <li class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black">
                 <NavLink
-                  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white hover:text-black "
                   to="Apartments"
                 >
                   Apartments
