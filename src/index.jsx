@@ -7,6 +7,7 @@ import HomePage from './homepage.jsx'
 import Houses from './Houses.jsx'
 import SpecificApartment from './SelectApartment.jsx'
 import ErrorPage from './Error-page.jsx'
+import imagelist from './GETImages.js'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
         <Route path="/Home" errorElement={<ErrorPage></ErrorPage>} element={<HomePage />}/>
         <Route path="/Houses" errorElement={<ErrorPage></ErrorPage>} element={<Houses />}/>
         <Route exact path="/Apartments" errorElement={<ErrorPage></ErrorPage>} element={<Apartments />} />
-        <Route path="/Apartments/:index" errorElement={<ErrorPage></ErrorPage>} element={<SpecificApartment/>}/>
+        <Route path="/Apartments/:index" errorElement={<ErrorPage></ErrorPage>} element={<SpecificApartment images={imagelist}/>}/>
       </Route>
     )
 )

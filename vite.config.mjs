@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react";
+import vitePluginRequire from "vite-plugin-require";
 import { defineConfig, transformWithEsbuild } from "vite";
 
 export default defineConfig({
@@ -8,6 +9,7 @@ export default defineConfig({
   plugins: [
     // React support
     react(),
+    vitePluginRequire.default(),
     // .js file support as if it was JSX
     {
       name: "load+transform-js-files-as-jsx",
