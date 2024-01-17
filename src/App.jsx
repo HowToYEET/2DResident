@@ -1,13 +1,17 @@
 import React from "react";
 import Nav from "./navbar.jsx";
-import { Outlet } from "react-router-dom";
+import { Outlet} from "react-router-dom";
+import Footer from './Footer.jsx'
 export default function LandingPage() {
   return (
-    <>
-      <header>
-        <Nav />
-      </header>
-      <div className="overflow-auto relative top-40 bg-gradient-to-b from-blue-100 to-blue-200" id="ContentCenter"> <Outlet /> </div>
-    </>
+    <div>
+    <header>
+      <Nav />
+    </header>
+    <div className="relative pt-10 overflow-auto bg-gradient-to-br from-cyan-100 content-between justify-self-auto gap-4" id="ContentCenter">
+       <Outlet/>
+       <Footer />
+        </div>
+    </div>
   );
 }
