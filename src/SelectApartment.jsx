@@ -6,7 +6,7 @@ import { PiSelectionBackground } from "react-icons/pi";
 import { RxBorderSplit } from "react-icons/rx";
 import { GrMoney } from "react-icons/gr";
 import map from '../public/map1.png';
-import Footer from './Footer'
+
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
   const [slide, Setslide] = useState(0);

@@ -15,7 +15,7 @@ const router = createBrowserRouter(
       <Route element={<App />}>
         <Route index element={<HomePage />}/>
         <Route path="/Home" errorElement={<ErrorPage></ErrorPage>} element={<HomePage />}/>
-        <Route exact path="/Apartments" errorElement={<ErrorPage></ErrorPage>} element={<Apartments />} />
+        <Route path="/Apartments" errorElement={<ErrorPage></ErrorPage>} element={<Apartments />} />
         <Route path="/Apartments/:index" errorElement={<ErrorPage></ErrorPage>} element={<SpecificApartment/>}/>
       </Route>
     )

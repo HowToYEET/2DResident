@@ -13,7 +13,7 @@ export default function Apartments() {
     return (
       <a>
         <div onClick={() => toSpecificApartment(item)}>
-          <div className=" hover:bg-blue-300 flex justify-center rounded-lg grid grid-cols-2 gap-5 p-2">
+          <div className="static hover:bg-blue-300 justify-center rounded-lg grid grid-cols-2 gap-5 p-2">
             <div className="">
               <h2 className="text-lg">{item.RoadName} &nbsp;&nbsp;&nbsp; </h2>
               <p className="text-sm opacity-50">{item.ZipCode} &nbsp; {item.city}</p> 
