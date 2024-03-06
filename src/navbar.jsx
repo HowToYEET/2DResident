@@ -1,18 +1,18 @@
 import React from "react";
 import { NavLink, ScrollRestoration } from "react-router-dom";
-import logo from '../public/Residence2DLogo.png'
+import logo from '../public/ResidenceLogo.png'
 import { TiBusinessCard } from "react-icons/ti";
 export default function Nav() {
   return (
     <>
-      <nav class="relative h-40 w-full border-b border-gray-200">
+      <nav class="relative h-40 w-full border-b-4 border-gray-200">
         <div class="max-w-screen-xl flex-wrap items-center justify-between mx-auto">
           <div
             class="items-center justify-between w-full md:flex md:w-auto md:order-1"
           >
             <NavLink
               to="Home"
-            ><img className="object-cover h-36 w-48 mt-0" src={logo} alt="2DResidence" />
+            ><img className="object-cover h-36 w-54 mt-1" src={logo} alt="2DResidence" />
             </NavLink>
 
             <ul class="flex m-1 p-10 md:p-0 font-medium border md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">

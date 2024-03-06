@@ -8,6 +8,9 @@ export default {
     extend: {
       colors:{
         "logo": "#6d2546"
+      },
+      backgroundColor:{
+        "lightLogo": "#975366"
       }
     },
   },

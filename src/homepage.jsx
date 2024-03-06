@@ -9,11 +9,11 @@ export default function HomePage() {
     <div className="relative">
       <div className=" grid grid-cols-2">
         <div className="">
-          <div>
-            <h1 className="text-3xl p-6 font-serif">The 2D real estate website   </h1>
-            <ReactTyped className=" font-serif p-6 " style={{ margin: 6, padding: 6 }} strings={text} backDelay={5000} typeSpeed={25} backSpeed={25} />
+          <div className="">
+            <h1 className="text-3xl m-2 p-6 font-serif mr-20 mb-20 ">Welcome to Residence Provider plaform. Explore our 2D and 3D apartments  </h1>
+            <ReactTyped className="m-2 font-serif p-6 " style={{ margin: 6, padding: 6 }} strings={text} backDelay={5000} typeSpeed={25} backSpeed={25} />
           </div>
-          <div className="flex relative ml-4 top-20">
+          <div className="flex relative ml-4 top-10">
             <div className=" bg-slate-600 p-8 flex rounded-sm">
               <input className="w-96 h-10 w3-input border-4 rounded-sm p-2.5" type="text" placeholder="Zip code, Adress, Road name..." />
               <NavLink to="/Apartments">
@@ -37,10 +37,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="p-6">
           <img src="https://images.ctfassets.net/pg6xj64qk0kh/2r4QaBLvhQFH1mPGljSdR9/39b737d93854060282f6b4a9b9893202/camden-paces-apartments-buckhead-ga-terraces-living-room-with-den_1.jpg?w=960" alt="" srcset="" />
         </div>
-        
+
       </div>
 
     </div>
