@@ -217,9 +217,6 @@ const Control = (apartment) => {
 };
 
 export default function Model3D() {
-  const MAX_RETRIES = 3; // Maximum number of retries
-  const RETRY_DELAY = 2000; // Delay in milliseconds between retries
-  const [retryCount, setRetryCount] = useState(0);
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
@@ -258,7 +255,7 @@ export default function Model3D() {
   return (
     <>
       <Canvas id="canvas">
-        <Environment background resolution={4096} files={"../dock_2.hdr"}>
+        <Environment background preset="city">
           <Lightformer
             form="rect" // circle | ring | rect (optional, default = rect)
             intensity={1} // power level (optional = 1)

@@ -17,7 +17,6 @@ export default function SelectApartments() {
 const Carusel = (listOfImages) => {
   const [slide, Setslide] = useState(0);
   const location = useLocation();
-  const [fullToggle, setFullToggle] = useState(false);
   const previousslide = () => {
     Setslide(slide === 0 ? listOfImages.data.length - 1 : slide - 1);
   };
@@ -64,6 +63,13 @@ const Carusel = (listOfImages) => {
 };
 
 const Information = (apartment) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const toSpecificApartment = (Apartment) => {
+    navigate(location.pathname + "/showroom", { state: Apartment, relative: "path" });
+  };
+
   return (
     <div className=" mt-8  w-full h-full grid grid-cols-3 overflow-x-hidden">
       <div id="Faktabox" className=" w-full">
@@ -103,7 +109,13 @@ const Information = (apartment) => {
               {formatter.format(apartment.data.price)}
             </h1>{" "}
             {apartment.data.has3D === true ? (
-              <ThreeDButton apartment={apartment.data} />
+              <button
+                onClick={() => toSpecificApartment(apartment.data)}
+                className="btn btn-three mr-28"
+                type="button"
+              >
+                See in 3D
+              </button>
             ) : (
               <></>
             )}
@@ -140,16 +152,9 @@ const Information = (apartment) => {
   );
 };
 
-const ThreeDButton = (apartmentInfo) => {
-  const navigate = useNavigate();
-
-  const toSpecificApartment = (Apartment) => {
-    let location = useLocation();
-    navigate(`${location.pathname}/showroom`, { state: Apartment });
-  };
+const ThreeDButton = () => {
   return (
     <button
-      onClick={toSpecificApartment(apartmentInfo.apartment)}
       className="btn btn-three mr-28"
       type="button"
     >
