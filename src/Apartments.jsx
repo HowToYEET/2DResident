@@ -35,7 +35,7 @@ export default function Apartments() {
   });
   return (
     <div>
-      <div className="grid h-32 w-full grid-cols-3 mt-3 ">
+      <div className="grid h-32 w-full grid-cols-3 mt-3">
         <div className="">
           <div className="flex m-10 mr-12 mt-14">
             <input
@@ -188,7 +188,10 @@ export default function Apartments() {
           {ListOfApartments.length.toString()} Apartments in Aalborg district
         </h1>
       </div>
-      <main id="main" className="relative mx-5  top-6  grid grid-cols-3 gap-3">
+      <main
+        id="main"
+        className="relative mx-5  top-6  grid grid-cols-3 gap-3 mb-20"
+      >
         {itemList}
       </main>
     </div>

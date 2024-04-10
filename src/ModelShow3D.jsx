@@ -16,7 +16,7 @@ import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
-const MINIMUM_DIST = 0.7;
+
 const Control = (apartment) => {
   let moveForward = false;
   let moveBackward = false;
@@ -37,7 +37,9 @@ const Control = (apartment) => {
     camera.quaternion.setFromEuler(_euler);
   };
   const handleMouseDown = (e) => {
-    window.addEventListener("mousemove", handleMouseMove);
+    if (e.button == 0) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
   };
   const handleMouseUp = (e) => {
     window.removeEventListener("mousemove", handleMouseMove);
@@ -119,6 +121,7 @@ const Control = (apartment) => {
     y: camera.position.y,
     z: camera.position.z,
   };
+  const MINIMUM_DIST = apartmentInfo.state.maxDist;
   function update(delta) {
     pointer.x = camera.position.x;
     pointer.y = camera.position.z;
@@ -128,7 +131,7 @@ const Control = (apartment) => {
       true
     );
     const actualMoveSpeed = delta * 1.2;
-    camera.position.y = 1.6;
+    camera.position.y = 1.8;
     frameLimits(camera.position);
     if (moveForward == true) {
       console.log(position);
@@ -145,7 +148,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateZ(-actualMoveSpeed);
-      camera.position.y = 1.6;
+      camera.position.y = 1.8;
     }
 
     if (moveBackward == true) {
@@ -160,7 +163,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateZ(actualMoveSpeed);
-      camera.position.y = 1.6;
+      camera.position.y = 1.8;
     }
 
     if (moveLeft == true) {
@@ -175,7 +178,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateX(-actualMoveSpeed);
-      camera.position.y = 1.6;
+      camera.position.y = 1.8;
     }
 
     if (moveRight == true) {
@@ -190,7 +193,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateX(actualMoveSpeed);
-      camera.position.y = 1.6;
+      camera.position.y = 1.8;
     }
   }
   function frameLimits(position) {
@@ -217,6 +220,12 @@ const Control = (apartment) => {
 };
 
 export default function Model3D() {
+  //Hide the scrollbar
+  var styleElement = document.createElement("style");
+  styleElement.appendChild(
+    document.createTextNode("body::-webkit-scrollbar{display: none;}")
+  );
+  document.getElementsByTagName("body")[0].appendChild(styleElement);
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
@@ -253,9 +262,9 @@ export default function Model3D() {
     </button>
   ));
   return (
-    <>
+    <div className=" absolute z-10 w-full h-full">
       <Canvas id="canvas">
-        <Environment background preset="city">
+        <Environment background resolution={1080} files={"/4k.hdr"}>
           <Lightformer
             form="rect" // circle | ring | rect (optional, default = rect)
             intensity={1} // power level (optional = 1)
@@ -269,7 +278,7 @@ export default function Model3D() {
         <PerspectiveCamera
           name="camera"
           ref={cameraRef}
-          fov={80}
+          fov={70}
           position={apartmentInfo.state.startingCameraPosition}
           rotation={apartmentInfo.state.target}
           makeDefault
@@ -287,6 +296,6 @@ export default function Model3D() {
       <div className="absolute top-60 left-10 w-20 m-4 opacity-75">
         {buttons}
       </div>
-    </>
+    </div>
   );
 }

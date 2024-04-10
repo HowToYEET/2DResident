@@ -18,7 +18,8 @@ class Apartment {
     framelimits,
     target,
     ApartmentPath,
-    has3D
+    has3D,
+    maxDist
   ) {
     this.ZipCode = ZipCode;
     this.city = city;
@@ -37,6 +38,7 @@ class Apartment {
     this.target = target;
     this.ApartmentPath = ApartmentPath;
     this.has3D = has3D;
+    this.maxDist = maxDist;
   }
 }
 
@@ -47,10 +49,16 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "./Apartment/IMG_2962.jpg",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_1/image2_apartment1.png",
+      "/Apartment_1/image1_apartment1.png",
+      "/Apartment_1/image3_apartment1.png",
+      "/Apartment_1/image4_apartment1.png",
+      "/Apartment_1/image5_apartment1.png",
+      "/Apartment_1/image6_apartment1.png",
+      "/Apartment_1/image7_apartment1.png",
+      "/Apartment_1/image8_apartment1.png",
+      "/Apartment_1/image9_apartment1.png",
+      "/Apartment_1/image10_apartment1.png",
     ],
     4298000,
     1916,
@@ -89,7 +97,8 @@ const ListOfApartments = [
     },
     [0, 0, 0],
     "/ApartmentModels/Apartment_1.glb",
-    true
+    true,
+    0.7
   ),
   new Apartment( //#2
     9000,
@@ -97,10 +106,12 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_2/image3_apartment2.png",
+      "/Apartment_2/image1_apartment2.png",
+      "/Apartment_2/image2_apartment2.png",
+      "/Apartment_2/image0_apartment2.png",
+      "/Apartment_2/image4_apartment2.png",
+      "/Apartment_2/image5_apartment2.png",
     ],
     4298000,
     1916,
@@ -139,7 +150,8 @@ const ListOfApartments = [
     },
     [0, -2.9, 0],
     "/ApartmentModels/Apartment_2.glb",
-    true
+    true,
+    0.7
   ),
   new Apartment( // #3
     9000,
@@ -147,10 +159,13 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_3/image1_apartment3.png",
+      "/Apartment_3/image2_apartment3.png",
+      "/Apartment_3/image3_apartment3.png",
+      "/Apartment_3/image4_apartment3.png",
+      "/Apartment_3/image5_apartment3.png",
+      "/Apartment_3/image6_apartment3.png",
+      "/Apartment_3/image7_apartment3.png",
     ],
     4298000,
     1916,
@@ -171,14 +186,14 @@ const ListOfApartments = [
         lookAt: { x: 5.7, y: 1.6, z: 11.25 },
       },
       {
-        title: "Bed Rooms",
+        title: "Bed Room",
         position: { x: 15.6, y: 1.6, z: 6.7 },
         lookAt: { x: 13.8, y: 1, z: 5.6 },
       },
       {
         title: "Bath Room",
-        position: { x: 12.9, y: 1.6, z: 7.7 },
-        lookAt: { x: 15.1, y: 1.6, z: 7.7 },
+        position: { x: 10.5, y: 1.6, z: 7.8 },
+        lookAt: { x: 10.5, y: 1.6, z: 6.1 },
       },
     ],
     {
@@ -189,7 +204,8 @@ const ListOfApartments = [
     },
     [0, 0.4, 0],
     "/ApartmentModels/Apartment_3.glb",
-    true
+    true,
+    0.3
   ),
   new Apartment( //#4
     9000,
@@ -197,10 +213,15 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_4/image1_apartment4.png",
+      "/Apartment_4/image2_apartment4.png",
+      "/Apartment_4/image3_apartment4.png",
+      "/Apartment_4/image4_apartment4.png",
+      "/Apartment_4/image5_apartment4.png",
+      "/Apartment_4/image6_apartment4.png",
+      "/Apartment_4/image7_apartment4.png",
+      "/Apartment_4/image8_apartment4.png",
+      "/Apartment_4/image9_apartment4.png",
     ],
     4298000,
     1916,
@@ -239,7 +260,8 @@ const ListOfApartments = [
     },
     [0, -1, 0],
     "/ApartmentModels/Apartment_4.glb",
-    true
+    true,
+    0.7
   ),
   new Apartment( //#5
     9000,
@@ -247,10 +269,14 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_5/image2_apartment5.png",
+      "/Apartment_5/image8_apartment5.png",
+      "/Apartment_5/image3_apartment5.png",
+      "/Apartment_5/image4_apartment5.png",
+      "/Apartment_5/image5_apartment5.png",
+      "/Apartment_5/image6_apartment5.png",
+      "/Apartment_5/image7_apartment5.png",
+      "/Apartment_5/image1_apartment5.png",
     ],
     4298000,
     1916,
@@ -289,7 +315,8 @@ const ListOfApartments = [
     },
     [0, 3, 0],
     "/ApartmentModels/Apartment_5.glb",
-    true
+    true,
+    0.0
   ),
   new Apartment( //#6
     9000,
@@ -297,10 +324,14 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_6/image2_apartment6.png",
+      "/Apartment_6/image8_apartment6.png",
+      "/Apartment_6/image3_apartment6.png",
+      "/Apartment_6/image4_apartment6.png",
+      "/Apartment_6/image5_apartment6.png",
+      "/Apartment_6/image6_apartment6.png",
+      "/Apartment_6/image7_apartment6.png",
+      "/Apartment_6/image1_apartment6.png",
     ],
     4298000,
     1916,
@@ -339,7 +370,8 @@ const ListOfApartments = [
     },
     [0, -1.5, 0],
     "/ApartmentModels/Apartment_6.glb",
-    true
+    true,
+    0.7
   ),
   new Apartment( //#7
     9000,
@@ -347,10 +379,10 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_7/image1_apartment7.png",
+      "/Apartment_7/image2_apartment7.png",
+      "/Apartment_7/image3_apartment7.png",
+      "/Apartment_7/image8_apartment7.png",
     ],
     4298000,
     1916,
@@ -389,7 +421,8 @@ const ListOfApartments = [
     },
     [0, 3.16, 0],
     "/ApartmentModels/Apartment_7.glb",
-    true
+    true,
+    0.7
   ),
   new Apartment( //#8
     9000,
@@ -397,10 +430,9 @@ const ListOfApartments = [
     "Boulevarden 23, 2 tv",
     187,
     [
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/568dcab3-9164-454a-8ea7-b3606e35ec4d.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/d40c4c53-6732-4f38-95e8-d09d4d778776.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/6f3688c9-9dae-40d5-8500-fff751d92fd8.webp",
-      "https://images.boligsiden.dk/images/case/719466dc-f06b-42ee-a4be-091eea55fc9f/1440x960/a043d293-814b-4ef4-a084-f8456f12614c.webp",
+      "/Apartment_8/image1_apartment8.png",
+      "/Apartment_8/image2_apartment8.png",
+      "/Apartment_8/image8_apartment8.png",
     ],
     4298000,
     1916,
@@ -439,7 +471,8 @@ const ListOfApartments = [
     },
     [0, 0, 0],
     "/ApartmentModels/Apartment_8.glb",
-    true
+    true,
+    0.3
   ),
 ];
 export default ListOfApartments;

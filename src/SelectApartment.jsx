@@ -33,7 +33,6 @@ const Carusel = (listOfImages) => {
           {listOfImages.data.map((im, index) => {
             return (
               <div className={slide === index ? "slide" : "slide hidden-slide"}>
-                {" "}
                 <img
                   key={index}
                   src={im}
@@ -67,7 +66,10 @@ const Information = (apartment) => {
   const location = useLocation();
 
   const toSpecificApartment = (Apartment) => {
-    navigate(location.pathname + "/showroom", { state: Apartment, relative: "path" });
+    navigate(location.pathname + "/showroom", {
+      state: Apartment,
+      relative: "path",
+    });
   };
 
   return (
@@ -138,7 +140,11 @@ const Information = (apartment) => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
             itaque debitis? Accusamus, harum! Nesciunt facere ut, amet deleniti
             hic quasi consequuntur velit molestiae. Praesentium in culpa,
-            provident sed consequatur totam?
+            provident sed consequatur totam? Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Labore voluptas cumque laboriosam
+            consequatur non reiciendis necessitatibus incidunt saepe amet,
+            laudantium sunt quo natus aspernatur quam! Doloremque voluptatem
+            harum dicta dignissimos.
           </p>
           <input
             className=" ml-72 mt-4 text-center h-9 w-10 text-xl rounded-3xl hover:bg-slate-400 hover:cursor-pointer"
@@ -154,10 +160,7 @@ const Information = (apartment) => {
 
 const ThreeDButton = () => {
   return (
-    <button
-      className="btn btn-three mr-28"
-      type="button"
-    >
+    <button className="btn btn-three mr-28" type="button">
       See in 3D
     </button>
   );
