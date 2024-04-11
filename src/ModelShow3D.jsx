@@ -122,6 +122,7 @@ const Control = (apartment) => {
     z: camera.position.z,
   };
   const MINIMUM_DIST = apartmentInfo.state.maxDist;
+  const VIEW_HEIGHT = 1.6;
   function update(delta) {
     pointer.x = camera.position.x;
     pointer.y = camera.position.z;
@@ -131,7 +132,7 @@ const Control = (apartment) => {
       true
     );
     const actualMoveSpeed = delta * 1.2;
-    camera.position.y = 1.8;
+    camera.position.y = VIEW_HEIGHT;
     frameLimits(camera.position);
     if (moveForward == true) {
       console.log(position);
@@ -148,7 +149,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateZ(-actualMoveSpeed);
-      camera.position.y = 1.8;
+      camera.position.y = VIEW_HEIGHT;
     }
 
     if (moveBackward == true) {
@@ -163,7 +164,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateZ(actualMoveSpeed);
-      camera.position.y = 1.8;
+      camera.position.y = VIEW_HEIGHT;
     }
 
     if (moveLeft == true) {
@@ -178,7 +179,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateX(-actualMoveSpeed);
-      camera.position.y = 1.8;
+      camera.position.y = VIEW_HEIGHT;
     }
 
     if (moveRight == true) {
@@ -193,7 +194,7 @@ const Control = (apartment) => {
         z: camera.position.z,
       };
       camera.translateX(actualMoveSpeed);
-      camera.position.y = 1.8;
+      camera.position.y = VIEW_HEIGHT;
     }
   }
   function frameLimits(position) {
@@ -264,21 +265,12 @@ export default function Model3D() {
   return (
     <div className=" absolute z-10 w-full h-full">
       <Canvas id="canvas">
-        <Environment background resolution={1080} files={"/4k.hdr"}>
-          <Lightformer
-            form="rect" // circle | ring | rect (optional, default = rect)
-            intensity={1} // power level (optional = 1)
-            color="white" // (optional = white)
-            scale={[10, 5]} // Scale it any way you prefer (optional = [1, 1])
-            target={[0, 0, 0]} // Target position (optional = undefined)
-          ></Lightformer>
-        </Environment>
-
+        <Environment background files={"/hello.hdr"}></Environment>
         <directionalLight castShadow position={[1, 2, 3]} intensity={1} />
         <PerspectiveCamera
           name="camera"
           ref={cameraRef}
-          fov={70}
+          fov={60}
           position={apartmentInfo.state.startingCameraPosition}
           rotation={apartmentInfo.state.target}
           makeDefault
