@@ -48,6 +48,7 @@ input[type=range] {
   display: none;
 }
 
+
 #description {
   overflow: hidden;
   display: -webkit-box;

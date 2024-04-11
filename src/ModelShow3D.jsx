@@ -8,13 +8,14 @@ import {
   PerspectiveCamera,
   useFBX,
   useGLTF,
-  useHelper,
+  useHelper
 } from "@react-three/drei";
 import { Canvas, events, useFrame, useThree } from "@react-three/fiber";
 import { useLocation } from "react-router-dom";
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-
+import { useLoader } from '@react-three/fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
 const Control = (apartment) => {
@@ -26,8 +27,6 @@ const Control = (apartment) => {
   const pointer = new THREE.Vector2();
   const rayCaster = new THREE.Raycaster();
   const apartmentInfo = useLocation();
-  console.log(camera);
-  console.log(apartment);
   const handleMouseMove = (e) => {
     const movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
     const movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
@@ -38,40 +37,30 @@ const Control = (apartment) => {
   };
   const handleMouseDown = (e) => {
     if (e.button == 0) {
+      console.log("IM DOWN")
       window.addEventListener("mousemove", handleMouseMove);
     }
   };
   const handleMouseUp = (e) => {
+    console.log("IM UP")
     window.removeEventListener("mousemove", handleMouseMove);
   };
   const handleKeyDown = (e) => {
     switch (e.code) {
-      case "ArrowUp":
       case "KeyW":
         moveForward = true;
         break;
 
-      case "ArrowLeft":
       case "KeyA":
         moveLeft = true;
         break;
 
-      case "ArrowDown":
       case "KeyS":
         moveBackward = true;
         break;
 
-      case "ArrowRight":
       case "KeyD":
         moveRight = true;
-        break;
-
-      case "Space":
-        moveUp = true;
-        break;
-
-      case "ShiftLeft":
-        moveDown = true;
         break;
     }
   };
@@ -134,12 +123,12 @@ const Control = (apartment) => {
     camera.position.y = 1.8;
     frameLimits(camera.position);
     if (moveForward == true) {
-      console.log(position);
-      console.log(camera);
+      //console.log(position);
+      //console.log(camera);
       intersects.forEach((element) => {
         if (element.distance < MINIMUM_DIST) {
           camera.position.set(position.x, position.y, position.z);
-          console.log(element);
+          //console.log(element);
         }
       });
       position = {
@@ -225,14 +214,17 @@ export default function Model3D() {
   styleElement.appendChild(
     document.createTextNode("body::-webkit-scrollbar{display: none;}")
   );
+  Timer()
+  //setInterval(TEst, 1000)
   document.getElementsByTagName("body")[0].appendChild(styleElement);
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
+  const GLTFModel = useLoader(GLTFLoader, apartmentInfo.state.ApartmentPath);
   const apartment = useRef();
   const btnInfo = apartmentInfo.state.Annotation;
-  console.log(model2Load);
-  console.log(apartmentInfo);
+  //console.log(model2Load);
+  //console.log(apartmentInfo);
   const buttons = btnInfo.map(({ title, position, lookAt }) => (
     <button
       className="bg-emerald-400 w-40 text-center whitespace-nowrap rounded-md my-2 hover:bg-emerald-600"
@@ -262,7 +254,7 @@ export default function Model3D() {
     </button>
   ));
   return (
-    <div className=" absolute z-10 w-full h-full">
+    <div className=" absolute z-10 w-full h-full" >
       <Canvas id="canvas">
         <Environment background resolution={1080} files={"/4k.hdr"}>
           <Lightformer
@@ -286,11 +278,11 @@ export default function Model3D() {
         <primitive
           ref={apartment}
           position={[0, 0, 0]}
-          object={model2Load.scene}
+          object={GLTFModel.scene}
           scale={1}
           rotation={[0, 0, 0]}
+          dispose={null}
         />
-
         <Control apartment={apartment} />
       </Canvas>
       <div className="absolute top-60 left-10 w-20 m-4 opacity-75">
@@ -298,4 +290,23 @@ export default function Model3D() {
       </div>
     </div>
   );
+}
+function Timer() {
+  const location = useLocation(); //use location.state to get information
+  let time = test()
+  function test() {
+    var time = parseInt(window.localStorage.getItem('IndividualApartmentTimeSpentInSeconds' + location.pathname))
+    if (time) {
+      return time
+    } else {
+      return 0
+    }
+  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      time += 1; console.log(time);
+      window.localStorage.setItem('IndividualApartmentTimeSpentInSeconds' + location.pathname, time);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [time]);
 }

@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         logo: "#6d2546",
+        darklogo: "#360c1c"
       },
       backgroundColor: {
         lightLogo: "#975366",

@@ -1,22 +1,44 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { json, useLocation } from "react-router-dom";
 import { FaArrowRight, FaArrowLeft, FaHouseChimney } from "react-icons/fa6";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 import { GrMoney } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
   const listOfImages = location.state.images;
+  const [time, setTime] = useState(() => {
+    var time = parseInt(window.localStorage.getItem('IndividualApartmentTimeSpentInSeconds' + location.pathname))
+    if (time) {
+      return time
+    } else {
+      return 0
+    }
+  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prevtime) => prevtime + 1);
+      window.localStorage.setItem('IndividualApartmentTimeSpentInSeconds' + location.pathname, time);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [time]);
+
+  //Anything else to measure?
+
   return (
-    <div className=" flex flex-col place-items-cente">
+    <div className=" flex flex-col place-items-center">
+      <p>{time}</p>
       <Carusel data={listOfImages} />
       <Information data={location.state} />
     </div>
   );
 }
 const Carusel = (listOfImages) => {
+
   const [slide, Setslide] = useState(0);
-  const location = useLocation();
+  const location = useLocation(); //use location.state to get information
   const previousslide = () => {
     Setslide(slide === 0 ? listOfImages.data.length - 1 : slide - 1);
   };
@@ -24,38 +46,68 @@ const Carusel = (listOfImages) => {
   const nextslide = () => {
     Setslide(slide === listOfImages.data.length - 1 ? 0 : slide + 1);
   };
-
-  console.log(listOfImages.data);
+  const [click, setClick] = useState(() => {
+    var time = parseInt(window.localStorage.getItem('IndividualApartmentImageRotationClicks' + location.pathname))
+    if (time) {
+      return time
+    } else {
+      return 0
+    }
+  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      window.localStorage.setItem('IndividualApartmentImageRotationClicks' + location.pathname, click);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [click]);
+  //console.log(listOfImages.data);
   return (
-    <div className="w-[100%] overflow-x-hidden justify-center items-center">
-      <div className="relative top-2 ">
-        <div className="static m-5 flex justify-center curser-pointer">
-          {listOfImages.data.map((im, index) => {
-            return (
-              <div className={slide === index ? "slide" : "slide hidden-slide"}>
-                <img
-                  key={index}
-                  src={im}
-                  alt={`apartment image ${index + 1}`}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div className="absolute top-0 h-full w-full justify-between items-center flex px-20 text-3xl text-black ">
-          <button
-            className=" bg-slate-400 bg-opacity-50 w-10 h-10 rounded-3xl "
-            onClick={previousslide}
-          >
-            <FaArrowLeft className="mx-1" />
-          </button>
-          <button
-            className="bg-slate-400 bg-opacity-50 w-10 h-10 rounded-3xl "
-            onClick={nextslide}
-          >
-            <FaArrowRight className="mx-1" />
-          </button>
-        </div>
+    <div>
+      <div>
+        <div className="w-[100%] overflow-x-hidden justify-center items-center">
+          <div className="relative top-2 ">
+            <div className="static m-5 flex justify-center curser-pointer">
+              {listOfImages.data.map((im, index) => {
+                return (
+                  <div className={slide === index ? "slide" : "slide hidden-slide"} >
+                    <img
+                      id={index}
+                      src={im}
+                      alt={`apartment image ${index + 1}`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="absolute top-0 h-full w-full justify-between items-center flex px-20 text-5xl text-black ">
+              <button
+                className="text-8xl "
+                onClick={() => { previousslide(); setClick((prevtime) => prevtime + 1); }}
+              >
+                <IoIosArrowBack className="mx-1" />
+              </button>
+              <button
+                className=" text-8xl "
+                onClick={() => { nextslide(); setClick((prevtime) => prevtime + 1); }}
+              >
+                <IoIosArrowForward className="mx-1" />
+              </button>
+            </div>
+          </div>
+        </div></div>
+      <div className="flex items-center justify-center">
+        {listOfImages.data.map((im, index) => {
+          return (
+            <div className="w-28 mx-2 inline-flex cursor-pointer " >
+              <img className={slide === index ? " border-solid border-4 border-sky-500 rounded-sm h-14" : "rounded-sm"}
+                id={index}
+                src={im}
+                alt={`apartment image ${index + 1}`}
+                onClick={() => { Setslide(index); setClick((prevtime) => prevtime + 1); }}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
