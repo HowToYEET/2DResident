@@ -5,6 +5,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { GrMoney } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import { string } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
@@ -25,11 +26,8 @@ export default function SelectApartments() {
     return () => clearInterval(interval);
   }, [time]);
 
-  //Anything else to measure?
-
   return (
     <div className=" flex flex-col place-items-center">
-      <p>{time}</p>
       <Carusel data={listOfImages} />
       <Information data={location.state} />
     </div>
@@ -39,6 +37,14 @@ const Carusel = (listOfImages) => {
 
   const [slide, Setslide] = useState(0);
   const location = useLocation(); //use location.state to get information
+  const navigate = useNavigate();
+  console.log(location.state)
+  const toSpecificApartment = (Apartment) => {
+    navigate(location.pathname + "/showroom", {
+      state: Apartment,
+      relative: "path",
+    });
+  };
   const previousslide = () => {
     Setslide(slide === 0 ? listOfImages.data.length - 1 : slide - 1);
   };
@@ -67,9 +73,11 @@ const Carusel = (listOfImages) => {
         <div className="w-[100%] overflow-x-hidden justify-center items-center">
           <div className="relative top-2 ">
             <div className="static m-5 flex justify-center curser-pointer">
+
               {listOfImages.data.map((im, index) => {
                 return (
                   <div className={slide === index ? "slide" : "slide hidden-slide"} >
+                    <div onClick={() => toSpecificApartment(location.state)} className={im.includes("SeeA") ? " z-20 absolute cursor-pointer text-center bg-slate-500 w-3/5 h-full opacity-0 " : " z-20 absolute cursor-pointer text-center bg-slate-500 w-3/5 h-full hidden "}></div>
                     <img
                       id={index}
                       src={im}
@@ -99,7 +107,7 @@ const Carusel = (listOfImages) => {
         {listOfImages.data.map((im, index) => {
           return (
             <div className="w-28 mx-2 inline-flex cursor-pointer " >
-              <img className={slide === index ? " border-solid border-4 border-sky-500 rounded-sm h-14" : "rounded-sm"}
+              <img className={slide === index ? " border-solid border-4 border-sky-500 rounded-sm h-16" : "rounded-sm"}
                 id={index}
                 src={im}
                 alt={`apartment image ${index + 1}`}
@@ -161,7 +169,7 @@ const Information = (apartment) => {
             <h1 className="flex">
               <GrMoney className=" font-extralight m-2" />
               {formatter.format(apartment.data.price)}
-            </h1>{" "}
+            </h1>
             {apartment.data.has3D === true ? (
               <button
                 onClick={() => toSpecificApartment(apartment.data)}
@@ -182,39 +190,11 @@ const Information = (apartment) => {
         </div>
         <div className="ml-24 m-4 mr-48 mt-4 font-extralight">
           <p id="description" className="">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur
-            ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae
-            voluptate officiis laborum commodi, quo deserunt eveniet. Eum qui
-            reiciendis corrupti. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quis vitae hic natus eveniet possimus.
-            Necessitatibus expedita corporis amet, itaque ex a voluptatibus
-            dolorem, totam ullam quibusdam perferendis delectus iure! Placeat.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
-            itaque debitis? Accusamus, harum! Nesciunt facere ut, amet deleniti
-            hic quasi consequuntur velit molestiae. Praesentium in culpa,
-            provident sed consequatur totam? Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Labore voluptas cumque laboriosam
-            consequatur non reiciendis necessitatibus incidunt saepe amet,
-            laudantium sunt quo natus aspernatur quam! Doloremque voluptatem
-            harum dicta dignissimos.
+            {apartment.data.description}
           </p>
-          <input
-            className=" ml-72 mt-4 text-center h-9 w-10 text-xl rounded-3xl hover:bg-slate-400 hover:cursor-pointer"
-            type="checkbox"
-            name="expand"
-            id="expand-btn"
-          />
         </div>
       </div>
     </div>
-  );
-};
-
-const ThreeDButton = () => {
-  return (
-    <button className="btn btn-three mr-28" type="button">
-      See in 3D
-    </button>
   );
 };
 
