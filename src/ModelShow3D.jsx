@@ -37,12 +37,10 @@ const Control = (apartment) => {
   };
   const handleMouseDown = (e) => {
     if (e.button == 0) {
-      console.log("IM DOWN")
       window.addEventListener("mousemove", handleMouseMove);
     }
   };
   const handleMouseUp = (e) => {
-    console.log("IM UP")
     window.removeEventListener("mousemove", handleMouseMove);
   };
   const handleKeyDown = (e) => {
@@ -216,7 +214,6 @@ export default function Model3D() {
     document.createTextNode("body::-webkit-scrollbar{display: none;}")
   );
   Timer()
-  //setInterval(TEst, 1000)
   document.getElementsByTagName("body")[0].appendChild(styleElement);
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
@@ -257,7 +254,7 @@ export default function Model3D() {
   return (
     <div className=" absolute z-10 w-full h-full" >
       <Canvas id="canvas">
-        <Environment background files={"/hello.hdr"}></Environment>
+        <Environment background files={"/4k.hdr"}></Environment>
         <directionalLight castShadow position={[1, 2, 3]} intensity={1} />
         <PerspectiveCamera
           name="camera"
@@ -270,7 +267,7 @@ export default function Model3D() {
         <primitive
           ref={apartment}
           position={[0, 0, 0]}
-          object={GLTFModel.scene}
+          object={model2Load.scene}
           scale={1}
           rotation={[0, 0, 0]}
           dispose={null}

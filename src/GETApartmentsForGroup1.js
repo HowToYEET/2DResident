@@ -150,7 +150,7 @@ const ListOfApartments = [
     },
     [0, -2.9, 0],
     "/ApartmentModels/Apartment_2.glb",
-    true,
+    false,
     0.7
   ),
   new Apartment( // #3
@@ -260,7 +260,7 @@ const ListOfApartments = [
     },
     [0, -1, 0],
     "/ApartmentModels/Apartment_4.glb",
-    true,
+    false,
     0.7
   ),
   new Apartment( //#5
@@ -370,7 +370,7 @@ const ListOfApartments = [
     },
     [0, -1.5, 0],
     "/ApartmentModels/Apartment_6.glb",
-    true,
+    false,
     0.7
   ),
   new Apartment( //#7
@@ -471,7 +471,7 @@ const ListOfApartments = [
     },
     [0, 0, 0],
     "/ApartmentModels/Apartment_8.glb",
-    true,
+    false,
     0.3
   ),
 ];

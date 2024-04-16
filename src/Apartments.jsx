@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCoins } from "react-icons/fa";
 import { FaHouseChimney } from "react-icons/fa6";
-import ListOfApartments from "./GETApartments.js";
+import ListOfApartments from "./GETApartmentsForGroup2.js";
 
 export default function Apartments() {
 
