@@ -19,7 +19,8 @@ class Apartment {
     target,
     ApartmentPath,
     has3D,
-    maxDist
+    maxDist,
+    description
   ) {
     this.ZipCode = ZipCode;
     this.city = city;
@@ -39,6 +40,7 @@ class Apartment {
     this.ApartmentPath = ApartmentPath;
     this.has3D = has3D;
     this.maxDist = maxDist;
+    this.description = description;
   }
 }
 
@@ -59,6 +61,7 @@ const ListOfApartments = [
       "/Apartment_1/image8_apartment1.png",
       "/Apartment_1/image9_apartment1.png",
       "/Apartment_1/image10_apartment1.png",
+      "/SeeA.png"
     ],
     4298000,
     1916,
@@ -98,7 +101,8 @@ const ListOfApartments = [
     [0, 0, 0],
     "/ApartmentModels/Apartment_1.glb",
     true,
-    0.7
+    0.7,
+    "Welcome to this standard apartment in the heart of Aalborg. Featuring X rooms, this cozy space offers a modern living experience with ample natural light and city views. The open-concept layout seamlessly connects the living, dining, and kitchen areas, perfect for both relaxation and entertaining. The kitchen boasts sleek appliances and generous counter space. A stylish bathroom completes the space, providing a serene retreat. Conveniently situated near Aalborg's downtown attractions, this apartment offers a comfortable and convenient urban lifestyle for residents seeking the best of city living."
   ),
   new Apartment( //#2
     9000,
@@ -151,7 +155,8 @@ const ListOfApartments = [
     [0, -2.9, 0],
     "/ApartmentModels/Apartment_2.glb",
     false,
-    0.7
+    0.7,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( // #3
     9000,
@@ -204,8 +209,9 @@ const ListOfApartments = [
     },
     [0, 0.4, 0],
     "/ApartmentModels/Apartment_3.glb",
-    true,
-    0.3
+    false,
+    0.3,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( //#4
     9000,
@@ -222,6 +228,7 @@ const ListOfApartments = [
       "/Apartment_4/image7_apartment4.png",
       "/Apartment_4/image8_apartment4.png",
       "/Apartment_4/image9_apartment4.png",
+      "/Apartment_4/SeeA.png"
     ],
     4298000,
     1916,
@@ -260,8 +267,9 @@ const ListOfApartments = [
     },
     [0, -1, 0],
     "/ApartmentModels/Apartment_4.glb",
-    false,
-    0.7
+    true,
+    0.7,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( //#5
     9000,
@@ -277,6 +285,7 @@ const ListOfApartments = [
       "/Apartment_5/image6_apartment5.png",
       "/Apartment_5/image7_apartment5.png",
       "/Apartment_5/image1_apartment5.png",
+      "/Apartment_5/SeeA.png"
     ],
     4298000,
     1916,
@@ -316,7 +325,8 @@ const ListOfApartments = [
     [0, 3, 0],
     "/ApartmentModels/Apartment_5.glb",
     true,
-    0.0
+    0.0,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( //#6
     9000,
@@ -371,7 +381,8 @@ const ListOfApartments = [
     [0, -1.5, 0],
     "/ApartmentModels/Apartment_6.glb",
     false,
-    0.7
+    0.7,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( //#7
     9000,
@@ -383,6 +394,7 @@ const ListOfApartments = [
       "/Apartment_7/image2_apartment7.png",
       "/Apartment_7/image3_apartment7.png",
       "/Apartment_7/image8_apartment7.png",
+      "/Apartment_1/SeeA.png"
     ],
     4298000,
     1916,
@@ -422,7 +434,8 @@ const ListOfApartments = [
     [0, 3.16, 0],
     "/ApartmentModels/Apartment_7.glb",
     true,
-    0.7
+    0.7,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
   new Apartment( //#8
     9000,
@@ -472,7 +485,8 @@ const ListOfApartments = [
     [0, 0, 0],
     "/ApartmentModels/Apartment_8.glb",
     false,
-    0.3
+    0.3,
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
   ),
 ];
 export default ListOfApartments;

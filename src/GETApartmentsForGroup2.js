@@ -19,7 +19,8 @@ class Apartment {
         target,
         ApartmentPath,
         has3D,
-        maxDist
+        maxDist,
+        description
     ) {
         this.ZipCode = ZipCode;
         this.city = city;
@@ -39,6 +40,7 @@ class Apartment {
         this.ApartmentPath = ApartmentPath;
         this.has3D = has3D;
         this.maxDist = maxDist;
+        this.description = description;
     }
 }
 
@@ -59,6 +61,7 @@ const ListOfApartments = [
             "/Apartment_1/image8_apartment1.png",
             "/Apartment_1/image9_apartment1.png",
             "/Apartment_1/image10_apartment1.png",
+            "/Apartment_1/SeeA.png"
         ],
         4298000,
         1916,
@@ -98,7 +101,8 @@ const ListOfApartments = [
         [0, 0, 0],
         "/ApartmentModels/Apartment_1.glb",
         false,
-        0.7
+        0.7,
+        "Welcome to this standard apartment in the heart of Aalborg. Featuring X bedrooms, this cozy space offers a modern living experience with ample natural light and city views. The open-concept layout seamlessly connects the living, dining, and kitchen areas, perfect for both relaxation and entertaining. The kitchen boasts sleek appliances and generous counter space. A stylish bathroom completes the space, providing a serene retreat. Conveniently situated near Aalborg's downtown attractions, this apartment offers a comfortable and convenient urban lifestyle for residents seeking the best of city living."
     ),
     new Apartment( //#2
         9000,
@@ -151,7 +155,8 @@ const ListOfApartments = [
         [0, -2.9, 0],
         "/ApartmentModels/Apartment_2.glb",
         true,
-        0.7
+        0.7,
+        "Step into this standard apartment nestled in Aalborg's bustling city center. With X bedrooms, it offers a cozy living space for urban dwellers. The living area is simple yet functional, featuring modest furnishings and plenty of natural light. The kitchen is equipped with essential appliances, making meal preparation a breeze. A compact bathroom completes the layout. Situated in a convenient location, this apartment provides easy access to shops, restaurants, and public transportation. Perfect for those seeking a practical living space in the heart of the city, this apartment offers a comfortable retreat amidst the urban landscape of Aalborg."
     ),
     new Apartment( // #3
         9000,
@@ -205,7 +210,8 @@ const ListOfApartments = [
         [0, 0.4, 0],
         "/ApartmentModels/Apartment_3.glb",
         false,
-        0.3
+        0.3,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
     new Apartment( //#4
         9000,
@@ -261,7 +267,8 @@ const ListOfApartments = [
         [0, -1, 0],
         "/ApartmentModels/Apartment_4.glb",
         true,
-        0.7
+        0.7,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
     new Apartment( //#5
         9000,
@@ -316,7 +323,8 @@ const ListOfApartments = [
         [0, 3, 0],
         "/ApartmentModels/Apartment_5.glb",
         false,
-        0.0
+        0.0,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
     new Apartment( //#6
         9000,
@@ -371,7 +379,8 @@ const ListOfApartments = [
         [0, -1.5, 0],
         "/ApartmentModels/Apartment_6.glb",
         true,
-        0.7
+        0.7,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
     new Apartment( //#7
         9000,
@@ -422,7 +431,8 @@ const ListOfApartments = [
         [0, 3.16, 0],
         "/ApartmentModels/Apartment_7.glb",
         false,
-        0.7
+        0.7,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
     new Apartment( //#8
         9000,
@@ -472,7 +482,8 @@ const ListOfApartments = [
         [0, 0, 0],
         "/ApartmentModels/Apartment_8.glb",
         true,
-        0.3
+        0.3,
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In pariatur ex maxime. Fugiat, illo veritatis error, nisi reprehenderit beatae"
     ),
 ];
 export default ListOfApartments;

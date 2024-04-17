@@ -6,6 +6,7 @@ import {
   OrbitControls,
   OrthographicCamera,
   PerspectiveCamera,
+  Reflector,
   useFBX,
   useGLTF,
   useHelper
@@ -14,6 +15,8 @@ import { Canvas, events, useFrame, useThree } from "@react-three/fiber";
 import { useLocation } from "react-router-dom";
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
+import * as POSTP from 'postprocessing';
+import { SSREffect, VelocityDepthNormalPass } from 'realism-effects'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
@@ -213,16 +216,17 @@ export default function Model3D() {
   styleElement.appendChild(
     document.createTextNode("body::-webkit-scrollbar{display: none;}")
   );
-  Timer()
+  Timer();
   document.getElementsByTagName("body")[0].appendChild(styleElement);
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
   const GLTFModel = useLoader(GLTFLoader, apartmentInfo.state.ApartmentPath);
   const apartment = useRef();
+
   const btnInfo = apartmentInfo.state.Annotation;
   //console.log(model2Load);
-  //console.log(apartmentInfo);
+  //console.log(apartmentInfo);  
   const buttons = btnInfo.map(({ title, position, lookAt }) => (
     <button
       className="bg-emerald-400 w-40 text-center whitespace-nowrap rounded-md my-2 hover:bg-emerald-600"
@@ -273,6 +277,7 @@ export default function Model3D() {
           dispose={null}
         />
         <Control apartment={apartment} />
+        <Reflector args={[0.8, 2.3]} position={[0.24, 1.2, -2.55]} rotation={[0, Math.PI * -0.5, 0]} resolution={1024} blur={[512, 512]} mixBlur={0.5} mirror={1} />
       </Canvas>
       <div className="absolute top-60 left-10 w-20 m-4 opacity-75">
         {buttons}
@@ -298,4 +303,14 @@ function Timer() {
     }, 1000);
     return () => clearInterval(interval);
   }, [time]);
+}
+const PostprocessingComponent = () => {
+  const { gl, scene, camera } = useThree();
+  const composer = new POSTP.EffectComposer(gl)
+  const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
+  const ssrEffect = new SSREffect(scene, camera, velocityDepthNormalPass)
+  const effectPass = new POSTP.EffectPass(camera, ssrEffect)
+  composer.addPass(effectPass)
+  return <>
+  </>
 }
