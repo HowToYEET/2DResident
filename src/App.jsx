@@ -10,9 +10,7 @@ export default function LandingPage() {
         <Nav />
       </div>
       <div>
-        <Outlet
-          id="ContentCenter"
-        />
+        <Outlet id="ContentCenter" />
       </div>
       <div className=" ">
         <Footer />

@@ -3,7 +3,7 @@ import logo from "../public/ResidenceLogo.png";
 
 export default function Footer() {
   return (
-    <footer class="relative rounded-lg shadow dark:bg-gray-900 mt-12">
+    <footer id="footer" class="relative rounded-lg shadow dark:bg-gray-900">
       <div class="w-full max-w-screen-xl mx-auto md:py-6 text-center items-center">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
@@ -30,7 +30,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <hr class="my-0 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
+        <hr class="my-0 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-5" />
       </div>
     </footer>
   );

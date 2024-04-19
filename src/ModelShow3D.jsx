@@ -1,24 +1,18 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Environment,
-  FirstPersonControls,
-  Lightformer,
-  OrbitControls,
-  OrthographicCamera,
   PerspectiveCamera,
-  Reflector,
-  useFBX,
+  MeshReflectorMaterial,
   useGLTF,
-  useHelper
 } from "@react-three/drei";
-import { Canvas, events, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useLocation } from "react-router-dom";
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import * as POSTP from 'postprocessing';
-import { SSREffect, VelocityDepthNormalPass } from 'realism-effects'
-import { useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { TiArrowBack } from "react-icons/ti";
+import { useNavigate } from "react-router-dom";
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
 const Control = (apartment) => {
@@ -30,12 +24,13 @@ const Control = (apartment) => {
   const pointer = new THREE.Vector2();
   const rayCaster = new THREE.Raycaster();
   const apartmentInfo = useLocation();
+
   const handleMouseMove = (e) => {
     const movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
     const movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
     _euler.setFromQuaternion(camera.quaternion);
-    _euler.y -= movementX * 0.001 * 3;
-    _euler.x -= movementY * 0.001 * 3;
+    _euler.y -= movementX * 0.001 * 2.4;
+    _euler.x -= movementY * 0.001 * 2.4;
     camera.quaternion.setFromEuler(_euler);
   };
   const handleMouseDown = (e) => {
@@ -111,8 +106,9 @@ const Control = (apartment) => {
     y: camera.position.y,
     z: camera.position.z,
   };
-  const MINIMUM_DIST = apartmentInfo.state.maxDist;
-  const VIEW_HEIGHT = 1.6;
+  const MINIMUM_DIST = apartmentInfo.state.MinimumDist;
+  const VIEW_HEIGHT = apartmentInfo.state.ViewHeight;
+
   function update(delta) {
     pointer.x = camera.position.x;
     pointer.y = camera.position.z;
@@ -125,12 +121,12 @@ const Control = (apartment) => {
     camera.position.y = VIEW_HEIGHT;
     frameLimits(camera.position);
     if (moveForward == true) {
-      //console.log(position);
+      console.log(position);
       //console.log(camera);
       intersects.forEach((element) => {
         if (element.distance < MINIMUM_DIST) {
           camera.position.set(position.x, position.y, position.z);
-          //console.log(element);
+          console.log(element);
         }
       });
       position = {
@@ -223,19 +219,20 @@ export default function Model3D() {
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
   const GLTFModel = useLoader(GLTFLoader, apartmentInfo.state.ApartmentPath);
   const apartment = useRef();
+  const navigate = useNavigate();
 
   const btnInfo = apartmentInfo.state.Annotation;
   //console.log(model2Load);
-  //console.log(apartmentInfo);  
+  console.log(apartmentInfo);
   const buttons = btnInfo.map(({ title, position, lookAt }) => (
     <button
-      className="bg-emerald-400 w-40 text-center whitespace-nowrap rounded-md my-2 hover:bg-emerald-600"
+      className=" select-none bg-emerald-400 w-32 text-center h-10 whitespace-nowrap rounded-md my-2 hover:bg-emerald-600 "
       type="button"
       onClick={() => {
         if (cameraRef) {
           const TweenP = new TWEEN.Tween(cameraRef.current.position)
-            .to({ x: position.x, y: position.y, z: position.z }, 600)
-            .easing(TWEEN.Easing.Cubic.Out)
+            .to({ x: position.x, y: position.y, z: position.z }, 1000)
+            .easing(TWEEN.Easing.Cubic.In)
             .start();
           TweenP.onComplete(() => {
             const Start = cameraRef.current.quaternion.clone();
@@ -245,8 +242,8 @@ export default function Model3D() {
             const End = cameraRef.current.quaternion.clone();
             cameraRef.current.quaternion.copy(Start);
             new TWEEN.Tween(cameraRef.current.quaternion)
-              .to(End, 400)
-              .easing(TWEEN.Easing.Cubic.Out)
+              .to(End, 1200)
+              .easing(TWEEN.Easing.Cubic.In)
               .start();
           });
         }
@@ -256,14 +253,19 @@ export default function Model3D() {
     </button>
   ));
   return (
-    <div className=" absolute z-10 w-full h-full" >
+    <div className="absolute z-10 w-full h-full m-0">
       <Canvas id="canvas">
-        <Environment background files={"/4k.hdr"}></Environment>
-        <directionalLight castShadow position={[1, 2, 3]} intensity={1} />
+        <Environment
+          background
+          blur={0.09}
+          files={"/cliff.hdr"}
+          backgroundRotation={[0, Math.PI * 0.5, 0]}
+        ></Environment>
+        <directionalLight castShadow position={[1, 2, 3]} intensity={0.0} />
         <PerspectiveCamera
           name="camera"
           ref={cameraRef}
-          fov={60}
+          fov={apartmentInfo.state.FOV}
           position={apartmentInfo.state.startingCameraPosition}
           rotation={apartmentInfo.state.target}
           makeDefault
@@ -277,9 +279,17 @@ export default function Model3D() {
           dispose={null}
         />
         <Control apartment={apartment} />
-        <Reflector args={[0.8, 2.3]} position={[0.24, 1.2, -2.55]} rotation={[0, Math.PI * -0.5, 0]} resolution={1024} blur={[512, 512]} mixBlur={0.5} mirror={1} />
+        <MirrorGenerator data={apartmentInfo.state.mirrors} />
       </Canvas>
-      <div className="absolute top-60 left-10 w-20 m-4 opacity-75">
+      <div
+        className="hover:cursor-pointer absolute top-10 left-10 w-20 m-4 opacity-75"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <TiArrowBack className="h-10 text-6xl bg-emerald-400 rounded-md hover:bg-emerald-600" />
+      </div>
+      <div className="absolute top-32 left-10 w-20 m-4 opacity-75">
         {buttons}
       </div>
     </div>
@@ -287,30 +297,43 @@ export default function Model3D() {
 }
 function Timer() {
   const location = useLocation(); //use location.state to get information
-  let time = test()
+  let time = test();
   function test() {
-    var time = parseInt(window.localStorage.getItem('IndividualApartmentTimeSpentInSeconds' + location.pathname))
+    var time = parseInt(
+      window.localStorage.getItem(
+        "IndividualApartmentTimeSpentInSeconds" + location.pathname
+      )
+    );
     if (time) {
-      return time
+      return time;
     } else {
-      return 0
+      return 0;
     }
-  };
+  }
   useEffect(() => {
     const interval = setInterval(() => {
-      time += 1; console.log(time);
-      window.localStorage.setItem('IndividualApartmentTimeSpentInSeconds' + location.pathname, time);
+      time += 1;
+      //console.log(time);
+      window.localStorage.setItem(
+        "IndividualApartmentTimeSpentInSeconds" + location.pathname,
+        time
+      );
     }, 1000);
     return () => clearInterval(interval);
   }, [time]);
 }
-const PostprocessingComponent = () => {
-  const { gl, scene, camera } = useThree();
-  const composer = new POSTP.EffectComposer(gl)
-  const velocityDepthNormalPass = new VelocityDepthNormalPass(scene, camera)
-  const ssrEffect = new SSREffect(scene, camera, velocityDepthNormalPass)
-  const effectPass = new POSTP.EffectPass(camera, ssrEffect)
-  composer.addPass(effectPass)
-  return <>
-  </>
-}
+const MirrorGenerator = (mirrors) => {
+  console.log(mirrors.data);
+  const AllMirrors = mirrors.data.map(({ Args, Position, Rotation }) => (
+    <mesh position={Position} rotation={Rotation}>
+      <planeGeometry args={Args} />
+      <MeshReflectorMaterial
+        resolution={2048}
+        blur={[512, 512]}
+        mixBlur={0}
+        mirror={0.9}
+      />
+    </mesh>
+  ));
+  return AllMirrors;
+};

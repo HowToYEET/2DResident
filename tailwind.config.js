@@ -5,7 +5,16 @@ export default {
     extend: {
       colors: {
         logo: "#6d2546",
-        darklogo: "#360c1c"
+        darklogo: "#360c1c",
+      },
+      height: {
+        custom: "90%",
+      },
+      width: {
+        custom: "90%",
+      },
+      top: {
+        custom: "120px",
       },
       backgroundColor: {
         lightLogo: "#975366",

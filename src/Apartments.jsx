@@ -5,13 +5,14 @@ import { FaHouseChimney } from "react-icons/fa6";
 import ListOfApartments from "./GETApartmentsForGroup2.js";
 
 export default function Apartments() {
-
   let itemList = ListOfApartments.map((item, index) => {
     const navigate = useNavigate();
 
     const toSpecificApartment = (Apartment) => {
       navigate(`${index}`, { state: Apartment });
     };
+    const navbar = document.getElementById("nav").classList;
+    navbar.remove("hidden");
     return (
       <a>
         <div onClick={() => toSpecificApartment(item)}>
