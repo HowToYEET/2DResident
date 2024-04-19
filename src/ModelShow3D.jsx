@@ -28,9 +28,15 @@ const Control = (apartment) => {
   const handleMouseMove = (e) => {
     const movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
     const movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
-    _euler.setFromQuaternion(camera.quaternion);
-    _euler.y -= movementX * 0.001 * 2.4;
-    _euler.x -= movementY * 0.001 * 2.4;
+    //_euler.setFromQuaternion(camera.quaternion);
+    const horizontalAxis = movementY * 0.001 * 2.4;
+    const verticalAxis = movementX * 0.001 * 2.4;
+    const horisontalLimit = _euler.x - horizontalAxis;
+
+    if ((Math.PI / 5) > horisontalLimit && -(Math.PI / 3) < horisontalLimit) {
+      _euler.x -= horizontalAxis
+    }
+    _euler.y -= verticalAxis
     camera.quaternion.setFromEuler(_euler);
   };
   const handleMouseDown = (e) => {
