@@ -69,7 +69,7 @@ const ListOfApartments = [
       "/Apartment_1/image8_apartment1.png",
       "/Apartment_1/image9_apartment1.png",
       "/Apartment_1/image10_apartment1.png",
-      "/Apartment_1/SeeA.png",
+      "/SeeA.png",
     ],
     3198000,
     -5,

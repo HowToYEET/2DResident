@@ -378,7 +378,7 @@ const ListOfApartments = [
     },
     [0, 3, 0],
     "/ApartmentModels/Apartment_5.glb",
-    false,
+    true,
     "Step into this cozy three-bedroom apartment situated in a prime location in Aalborg. Designed for modern living, this bright and airy space features an open-concept layout that seamlessly connects the living and dining areas. The stylish kitchen boasts contemporary finishes and plenty of counter space for meal preparation. 2 serene bathroom with sleek fixtures offers a relaxing escape from the city's hustle and bustle. With its location near Aalborg's vibrant restaurants, boutiques, and entertainment venues, this apartment provides the perfect urban retreat for those seeking convenience and comfort.",
     [
       {
