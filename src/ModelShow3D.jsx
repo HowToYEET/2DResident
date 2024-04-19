@@ -112,19 +112,22 @@ const Control = (apartment) => {
   function update(delta) {
     pointer.x = camera.position.x;
     pointer.y = camera.position.z;
-    rayCaster.setFromCamera(pointer, camera);
+    const direction = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z)
+    direction.normalize()
+    rayCaster.set(camera.position, direction)
+    //rayCaster.setFromCamera(pointer, camera);
     const intersects = rayCaster.intersectObjects(
       apartment.apartment.current.children,
       true
     );
+    //console.log(intersects)
     const actualMoveSpeed = delta * 1.2;
     camera.position.y = VIEW_HEIGHT;
     frameLimits(camera.position);
     if (moveForward == true) {
-      console.log(position);
-      //console.log(camera);
+
       intersects.forEach((element) => {
-        if (element.distance < MINIMUM_DIST) {
+        if (element.distance < 0.5) {
           camera.position.set(position.x, position.y, position.z);
           console.log(element);
         }
