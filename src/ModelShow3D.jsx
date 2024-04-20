@@ -13,6 +13,7 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import { element } from "three/examples/jsm/nodes/shadernode/ShaderNode";
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
 const Control = (apartment) => {
@@ -28,15 +29,15 @@ const Control = (apartment) => {
   const handleMouseMove = (e) => {
     const movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
     const movementY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
-    //_euler.setFromQuaternion(camera.quaternion);
+    _euler.setFromQuaternion(camera.quaternion);
     const horizontalAxis = movementY * 0.001 * 2.4;
     const verticalAxis = movementX * 0.001 * 2.4;
     const horisontalLimit = _euler.x - horizontalAxis;
 
-    if ((Math.PI / 5) > horisontalLimit && -(Math.PI / 3) < horisontalLimit) {
-      _euler.x -= horizontalAxis
+    if (Math.PI / 5 > horisontalLimit && -(Math.PI / 3) < horisontalLimit) {
+      _euler.x -= horizontalAxis;
     }
-    _euler.y -= verticalAxis
+    _euler.y -= verticalAxis;
     camera.quaternion.setFromEuler(_euler);
   };
   const handleMouseDown = (e) => {
@@ -112,30 +113,31 @@ const Control = (apartment) => {
     y: camera.position.y,
     z: camera.position.z,
   };
-  const MINIMUM_DIST = apartmentInfo.state.MinimumDist;
+  const MINIMUM_DIST = 0.3; //apartmentInfo.state.MinimumDist;
   const VIEW_HEIGHT = apartmentInfo.state.ViewHeight;
-
+  let isHitting = false;
   function update(delta) {
-    pointer.x = camera.position.x;
-    pointer.y = camera.position.z;
-    const direction = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z)
-    direction.normalize()
-    rayCaster.set(camera.position, direction)
-    //rayCaster.setFromCamera(pointer, camera);
+    const actualMoveSpeed = delta * 1.2;
+    camera.position.y = VIEW_HEIGHT;
+    frameLimits(camera.position);
+    const direction = new THREE.Vector3(
+      camera.position.x,
+      camera.position.y,
+      camera.position.z
+    );
+    direction.normalize();
+
+    rayCaster.set(camera.position, direction);
     const intersects = rayCaster.intersectObjects(
       apartment.apartment.current.children,
       true
     );
-    //console.log(intersects)
-    const actualMoveSpeed = delta * 1.2;
-    camera.position.y = VIEW_HEIGHT;
-    frameLimits(camera.position);
-    if (moveForward == true) {
 
+    if (moveForward == true) {
+      console.log(camera.position);
       intersects.forEach((element) => {
-        if (element.distance < 0.5) {
+        if (element.distance < MINIMUM_DIST) {
           camera.position.set(position.x, position.y, position.z);
-          console.log(element);
         }
       });
       position = {
@@ -150,7 +152,6 @@ const Control = (apartment) => {
     if (moveBackward == true) {
       intersects.forEach((element) => {
         if (element.distance < MINIMUM_DIST) {
-          camera.position.set(position.x, position.y, position.z);
         }
       });
       position = {
@@ -226,7 +227,13 @@ export default function Model3D() {
   const apartmentInfo = useLocation();
   const cameraRef = useRef(null);
   const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
-  const GLTFModel = useLoader(GLTFLoader, apartmentInfo.state.ApartmentPath);
+  console.log(model2Load);
+  model2Load.scene.traverse((p) => {
+    if (p.material) {
+      console.log(p.material.side);
+      p.material.side = THREE.DoubleSide;
+    }
+  });
   const apartment = useRef();
   const navigate = useNavigate();
 

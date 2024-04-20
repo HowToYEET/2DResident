@@ -11,8 +11,6 @@ export default function Apartments() {
     const toSpecificApartment = (Apartment) => {
       navigate(`${index}`, { state: Apartment });
     };
-    const navbar = document.getElementById("nav").classList;
-    navbar.remove("hidden");
     return (
       <a>
         <div onClick={() => toSpecificApartment(item)}>

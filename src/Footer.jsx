@@ -3,7 +3,10 @@ import logo from "../public/ResidenceLogo.png";
 
 export default function Footer() {
   return (
-    <footer id="footer" class="relative rounded-lg shadow dark:bg-gray-900">
+    <footer
+      id="footer"
+      class=" select-none relative rounded-lg shadow dark:bg-gray-900"
+    >
       <div class="w-full max-w-screen-xl mx-auto md:py-6 text-center items-center">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">

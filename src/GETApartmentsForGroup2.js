@@ -60,7 +60,6 @@ const ListOfApartments = [
     133,
     [
       "/Apartment_1/image2_apartment1.png",
-      "/Apartment_1/image1_apartment1.png",
       "/Apartment_1/image3_apartment1.png",
       "/Apartment_1/image4_apartment1.png",
       "/Apartment_1/image5_apartment1.png",
@@ -486,6 +485,9 @@ const ListOfApartments = [
       "/Apartment_7/image1_apartment7.png",
       "/Apartment_7/image2_apartment7.png",
       "/Apartment_7/image3_apartment7.png",
+      "/Apartment_7/image4_apartment7.png",
+      "/Apartment_7/image5_apartment7.png",
+      "/Apartment_7/image6_apartment7.png",
       "/Apartment_7/image8_apartment7.png",
       "/SeeA.png",
     ],
@@ -531,9 +533,14 @@ const ListOfApartments = [
     "Residence Provider welcomes you to this modern two-bedroom apartment nestled in the heart of Aalborg's historic district. With its warm ambiance and contemporary design, this inviting space offers a seamless blend of comfort and style. Sunlight streams through the large windows, illuminating the open-plan living, dining, and kitchen areas. The well-equipped kitchen features sleek appliances and ample storage, perfect for culinary enthusiasts. A beautifully appointed bathroom provides a tranquil retreat, complete with elegant fixtures. Conveniently located near Aalborg's charming cafes, shops, and cultural attractions, this apartment promises a convenient and vibrant urban lifestyle.",
     [
       {
-        Args: [0.84, 1.07],
+        Args: [0.77, 1.07],
         Position: [3.855, 1.66, -0.647],
         Rotation: [0, Math.PI * -0.5, 0],
+      },
+      {
+        Args: [1.08, 0.78],
+        Position: [4.96, 1.68, 2.83],
+        Rotation: [0, Math.PI * 0, 0],
       },
     ],
     60,

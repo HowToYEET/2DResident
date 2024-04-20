@@ -60,7 +60,6 @@ const ListOfApartments = [
     133,
     [
       "/Apartment_1/image2_apartment1.png",
-      "/Apartment_1/image1_apartment1.png",
       "/Apartment_1/image3_apartment1.png",
       "/Apartment_1/image4_apartment1.png",
       "/Apartment_1/image5_apartment1.png",
@@ -473,7 +472,7 @@ const ListOfApartments = [
         Rotation: [0, Math.PI * 0.0, 0],
       },
     ],
-    60,
+    70,
     1.6,
     0.3
   ),
@@ -486,6 +485,9 @@ const ListOfApartments = [
       "/Apartment_7/image1_apartment7.png",
       "/Apartment_7/image2_apartment7.png",
       "/Apartment_7/image3_apartment7.png",
+      "/Apartment_7/image4_apartment7.png",
+      "/Apartment_7/image5_apartment7.png",
+      "/Apartment_7/image6_apartment7.png",
       "/Apartment_7/image8_apartment7.png",
     ],
     4000000,
