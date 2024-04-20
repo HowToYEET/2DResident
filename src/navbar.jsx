@@ -8,7 +8,7 @@ export default function Nav() {
       id="nav"
       class=" select-none relative h-24 w-full border-b-4 border-gray-200"
     >
-      <div class="max-w-screen-xl flex-wrap items-center justify-between mx-auto">
+      <div class=" select-none max-w-screen-xl flex-wrap items-center justify-between mx-auto">
         <div class="items-center justify-between w-full md:flex md:w-auto md:order-1">
           <NavLink to="Home">
             <img
