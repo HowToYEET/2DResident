@@ -13,6 +13,7 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import { FaArrowRight, FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
 import { element } from "three/examples/jsm/nodes/shadernode/ShaderNode";
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
@@ -117,7 +118,7 @@ const Control = (apartment) => {
   const VIEW_HEIGHT = apartmentInfo.state.ViewHeight;
   let isHitting = false;
   function update(delta) {
-    const actualMoveSpeed = delta * 1.2;
+    const actualMoveSpeed = delta * apartmentInfo.state.WalkingSpeed;
     camera.position.y = VIEW_HEIGHT;
     frameLimits(camera.position);
     const direction = new THREE.Vector3(
@@ -242,7 +243,7 @@ export default function Model3D() {
   console.log(apartmentInfo);
   const buttons = btnInfo.map(({ title, position, lookAt }) => (
     <button
-      className=" select-none bg-emerald-400 w-32 text-center h-10 whitespace-nowrap rounded-md my-2 hover:bg-emerald-600 "
+      className=" select-none bg-blueLogo w-32 text-center h-10 whitespace-nowrap rounded-md my-2 hover:bg-contrastLogo "
       type="button"
       onClick={() => {
         if (cameraRef) {
@@ -298,12 +299,12 @@ export default function Model3D() {
         <MirrorGenerator data={apartmentInfo.state.mirrors} />
       </Canvas>
       <div
-        className="hover:cursor-pointer absolute top-10 left-10 w-20 m-4 opacity-75"
+        className="hover:cursor-pointer select-none bg-blueLogo flex absolute top-10 h-10 text-center whitespace-nowrap left-10 w-32 my-2 m-4 hover:bg-contrastLogo hover:bg-opacity-75 rounded-md"
         onClick={() => {
           navigate(-1);
         }}
       >
-        <TiArrowBack className="h-10 text-6xl bg-emerald-400 rounded-md hover:bg-emerald-600" />
+        <FaArrowLeftLong className=" text-3xl mx-3 text-center my-1" /> <p className=" my-2">Go back</p>
       </div>
       <div className="absolute top-32 left-10 w-20 m-4 opacity-75">
         {buttons}

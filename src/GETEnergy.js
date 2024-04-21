@@ -1,11 +1,7 @@
 const EnergyLevel = Object.freeze({
-  A20: "A20",
-  A15: "A15",
-  A10: "A10",
-  B: "B",
-  C: "C",
-  D: "D",
-  E: "E",
-  F: "F",
+  A20: "../energyFotos/A20.jpg",
+  A15: "../energyFotos/A15.jpg",
+  A10: "../energyFotos/A10.jpg",
+  B: "../energyFotos/B.jpg",
 });
 export default EnergyLevel;

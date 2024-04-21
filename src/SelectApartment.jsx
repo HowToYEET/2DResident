@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { json, useLocation } from "react-router-dom";
-import { FaArrowRight, FaArrowLeft, FaHouseChimney } from "react-icons/fa6";
+import { FaArrowRight, FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { GrMoney } from "react-icons/gr";
@@ -10,6 +10,7 @@ import { string } from "three/examples/jsm/nodes/Nodes.js";
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
   const listOfImages = location.state.images;
+  const navigate = useNavigate();
   const [time, setTime] = useState(() => {
     var time = parseInt(
       window.localStorage.getItem(
@@ -35,6 +36,15 @@ export default function SelectApartments() {
 
   return (
     <div className=" flex flex-col place-items-center">
+      <div
+        className="hover:cursor-pointer flex text-center hover:bg-black hover:bg-opacity-10 rounded-md absolute top-30 left-20 w-32 m-4 z-10"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <FaArrowLeftLong className=" text-3xl mx-3" /> <p>Go back</p>
+
+      </div>
       <Carusel data={listOfImages} />
       <Information data={location.state} />
     </div>
@@ -178,9 +188,10 @@ const Information = (apartment) => {
               <p className="text-sm font-extralight">Square meter:</p>
               <p className="text-sm font-extralight">Year build:</p>
               <p className="text-sm font-extralight">Number of rooms:</p>
-              <p className="text-sm font-extralight">floor number:</p>
+              <p className="text-sm font-extralight">Floor number:</p>
               <p className="text-sm font-extralight">Square meter price:</p>
-              <p className="text-sm font-extralight">price historic changes:</p>
+              <p className="text-sm font-extralight">Price historic changes:</p>
+              <p className="text-sm font-extralight">Energy label:</p>
             </div>
             <div id="number" className=" space-y-3 text-right pr-9">
               <p className="text-sm font-semibold">{apartment.data.sqm}m²</p>
@@ -197,6 +208,7 @@ const Information = (apartment) => {
               <p className="text-sm font-semibold">
                 {apartment.data.priceHist}%
               </p>
+              <img className="h-8 ml-24" src={apartment.data.EnergyLevel} alt="" srcset="" />
             </div>
           </div>
         </div>

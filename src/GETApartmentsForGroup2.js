@@ -24,7 +24,8 @@ class Apartment {
     mirrors,
     FOV,
     ViewHeight,
-    MinimumDist
+    MinimumDist,
+    WalkingSpeed,
   ) {
     this.ZipCode = ZipCode;
     this.city = city;
@@ -49,6 +50,7 @@ class Apartment {
     this.FOV = FOV;
     this.ViewHeight = ViewHeight;
     this.MinimumDist = MinimumDist;
+    this.WalkingSpeed = WalkingSpeed;
   }
 }
 
@@ -119,7 +121,8 @@ const ListOfApartments = [
     ],
     70,
     1.5,
-    0.5
+    0.5,
+    1.2
   ),
   new Apartment( //#2
     9000,
@@ -135,12 +138,12 @@ const ListOfApartments = [
       "/Apartment_2/image5_apartment2.png",
       "/SeeA.png",
     ],
-    2098000,
+    798000,
     0,
     2021,
     2,
     "1st",
-    27973,
+    21000,
     Energy.A20,
     [3.58, 1.5, -0.44],
     [
@@ -184,7 +187,8 @@ const ListOfApartments = [
     ],
     60,
     1.5,
-    0.4
+    0.4,
+    1.2
   ),
   new Apartment( // #3
     9000,
@@ -200,12 +204,12 @@ const ListOfApartments = [
       "/Apartment_3/image6_apartment3.png",
       "/Apartment_3/image7_apartment3.png",
     ],
-    3500000,
+    2575000,
     5,
     2017,
     4,
     "4th",
-    28688,
+    27989,
     Energy.A15,
     [8.2, 1.6, 12.5],
     [
@@ -249,7 +253,8 @@ const ListOfApartments = [
     ],
     60,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#4
     9000,
@@ -273,7 +278,7 @@ const ListOfApartments = [
     2007,
     2,
     "1st",
-    23606,
+    24777,
     Energy.B,
     [-4.4, 1.6, 0.1],
     [
@@ -322,7 +327,8 @@ const ListOfApartments = [
     ],
     70,
     1.6,
-    0.5
+    0.5,
+    1.2
   ),
   new Apartment( //#5
     9000,
@@ -344,12 +350,12 @@ const ListOfApartments = [
       "/Apartment_5/image1_apartment5.png",
       "/SeeA.png",
     ],
-    3298000,
+    4295000,
     5,
     2012,
     3,
     "3rd",
-    27714,
+    27710,
     Energy.A10,
     [-0.7, 1.6, -3.2],
     [
@@ -408,7 +414,8 @@ const ListOfApartments = [
     ],
     60,
     1.65,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#6
     9000,
@@ -430,7 +437,7 @@ const ListOfApartments = [
     2015,
     2,
     "2nd",
-    22984,
+    24242,
     Energy.A10,
     [8, 1.6, 2.96],
     [
@@ -477,9 +484,10 @@ const ListOfApartments = [
         Rotation: [0, Math.PI * 0.0, 0],
       },
     ],
-    60,
+    70,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#7
     9000,
@@ -496,12 +504,12 @@ const ListOfApartments = [
       "/Apartment_7/image8_apartment7.png",
       "/SeeA.png",
     ],
-    4000000,
+    2045000,
     0,
     2023,
     2,
     "4th",
-    40000,
+    24939,
     Energy.A20,
     [2.3, 1.6, -2.2],
     [
@@ -550,7 +558,8 @@ const ListOfApartments = [
     ],
     60,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#8
     9000,
@@ -565,12 +574,12 @@ const ListOfApartments = [
       "/Apartment_8/image5_apartment8.png",
       "/Apartment_8/image8_apartment8.png",
     ],
-    1998000,
+    1270000,
     -5,
     "2006",
     2,
     "2nd",
-    26289,
+    23519,
     Energy.B,
     [7.9, 1.6, 9.1],
     [
@@ -619,7 +628,8 @@ const ListOfApartments = [
     ],
     70,
     1.55,
-    0.5
+    0.5,
+    1.2
   ),
 ];
 export default ListOfApartments;

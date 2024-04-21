@@ -24,7 +24,8 @@ class Apartment {
     mirrors,
     FOV,
     ViewHeight,
-    MinimumDist
+    MinimumDist,
+    WalkingSpeed
   ) {
     this.ZipCode = ZipCode;
     this.city = city;
@@ -49,6 +50,7 @@ class Apartment {
     this.FOV = FOV;
     this.ViewHeight = ViewHeight;
     this.MinimumDist = MinimumDist;
+    this.WalkingSpeed = WalkingSpeed;
   }
 }
 
@@ -120,7 +122,8 @@ const ListOfApartments = [
     ],
     70,
     1.5,
-    0.5
+    0.5,
+    1.2
   ),
   new Apartment( //#2
     9000,
@@ -184,7 +187,8 @@ const ListOfApartments = [
     ],
     60,
     1.6,
-    0.4
+    0.4,
+    1.2
   ),
   new Apartment( // #3
     9000,
@@ -250,7 +254,8 @@ const ListOfApartments = [
     ],
     60,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#4
     9000,
@@ -322,7 +327,8 @@ const ListOfApartments = [
     ],
     70,
     1.6,
-    0.5
+    0.5,
+    1.2
   ),
   new Apartment( //#5
     9000,
@@ -407,7 +413,8 @@ const ListOfApartments = [
     ],
     60,
     1.65,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#6
     9000,
@@ -479,7 +486,8 @@ const ListOfApartments = [
     ],
     70,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#7
     9000,
@@ -544,7 +552,8 @@ const ListOfApartments = [
     ],
     60,
     1.6,
-    0.3
+    0.3,
+    1.2
   ),
   new Apartment( //#8
     9000,
@@ -614,7 +623,8 @@ const ListOfApartments = [
     ],
     70,
     1.55,
-    0.5
+    0.5,
+    1.2
   ),
 ];
 export default ListOfApartments;

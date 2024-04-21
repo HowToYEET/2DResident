@@ -18,6 +18,8 @@ export default {
       },
       backgroundColor: {
         lightLogo: "#975366",
+        blueLogo: "#c8e6e7",
+        contrastLogo: "#967c94"
       },
     },
   },
