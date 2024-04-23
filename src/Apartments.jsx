@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCoins } from "react-icons/fa";
 import { FaHouseChimney } from "react-icons/fa6";
-import ListOfApartments from "./GETApartmentsForGroup2.js";
+import ListOfApartments from "./GETGroup2.js";
 
 export default function Apartments() {
   let itemList = ListOfApartments.map((item, index) => {
     const navigate = useNavigate();
-
+    console.log(item.ApartmentInfo)
     const toSpecificApartment = (Apartment) => {
       navigate(`${index}`, { state: Apartment });
     };
@@ -17,16 +17,16 @@ export default function Apartments() {
           <div className="relative bg-lightLogo bg-opacity-10 hover:bg-opacity-60 cursor-pointer justify-center rounded-md grid grid-flow-rows grid-rows-auto gap-5">
             <img
               className=" h-full w-100 hover:opacity-70"
-              src={item.images[0]}
+              src={item.ApartmentInfo.images[0]}
               alt="placeholder"
             />
             <div className="p-2 text-center">
-              <h2 className="text-lg">{item.RoadName} </h2>
+              <h2 className="text-lg">{item.ApartmentInfo.ApartmentName} </h2>
               <p className="text-sm opacity-50">
-                {item.ZipCode} {item.city}
+                {item.ZipCode} {item.ApartmentInfo.CityName}
               </p>
-              <h2 className=""> {item.sqm}m²</h2>
-              <h2 className="">{formatter.format(item.price)}</h2>
+              <h2 className=""> {item.ApartmentInfo.Squaremeter}m²</h2>
+              <h2 className="">{formatter.format(item.ApartmentInfo.Price)}</h2>
             </div>
           </div>
         </div>

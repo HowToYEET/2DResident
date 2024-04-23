@@ -23,9 +23,9 @@ const Control = (apartment) => {
   let moveLeft = false;
   let moveRight = false;
   const { camera } = useThree();
-  const pointer = new THREE.Vector2();
   const rayCaster = new THREE.Raycaster();
-  const apartmentInfo = useLocation();
+  const Apartment = useLocation();
+  const ModelInfo = Apartment.state.ModelInfo;
 
   const handleMouseMove = (e) => {
     const movementX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
@@ -115,10 +115,10 @@ const Control = (apartment) => {
     z: camera.position.z,
   };
   const MINIMUM_DIST = 0.3; //apartmentInfo.state.MinimumDist;
-  const VIEW_HEIGHT = apartmentInfo.state.ViewHeight;
+  const VIEW_HEIGHT = ModelInfo.ViewHeight;
   let isHitting = false;
   function update(delta) {
-    const actualMoveSpeed = delta * apartmentInfo.state.WalkingSpeed;
+    const actualMoveSpeed = delta * ModelInfo.WalkingSpeed;
     camera.position.y = VIEW_HEIGHT;
     frameLimits(camera.position);
     const direction = new THREE.Vector3(
@@ -195,20 +195,20 @@ const Control = (apartment) => {
     }
   }
   function frameLimits(position) {
-    if (position.z >= apartmentInfo.state.framelimits.z1) {
-      position.z = apartmentInfo.state.framelimits.z1;
+    if (position.z >= ModelInfo.FrameLimits.z1) {
+      position.z = ModelInfo.FrameLimits.z1;
     }
 
-    if (position.z <= apartmentInfo.state.framelimits.z2) {
-      position.z = apartmentInfo.state.framelimits.z2;
+    if (position.z <= ModelInfo.FrameLimits.z2) {
+      position.z = ModelInfo.FrameLimits.z2;
     }
 
-    if (position.x <= apartmentInfo.state.framelimits.x1) {
-      position.x = apartmentInfo.state.framelimits.x1;
+    if (position.x <= ModelInfo.FrameLimits.x1) {
+      position.x = ModelInfo.FrameLimits.x1;
     }
 
-    if (position.x >= apartmentInfo.state.framelimits.x2) {
-      position.x = apartmentInfo.state.framelimits.x2;
+    if (position.x >= ModelInfo.FrameLimits.x2) {
+      position.x = ModelInfo.FrameLimits.x2;
     }
   }
   useFrame((_, delta) => {
@@ -225,9 +225,10 @@ export default function Model3D() {
   );
   Timer();
   document.getElementsByTagName("body")[0].appendChild(styleElement);
-  const apartmentInfo = useLocation();
+  const Apartment = useLocation();
+  console.log(Apartment)
   const cameraRef = useRef(null);
-  const model2Load = useGLTF(apartmentInfo.state.ApartmentPath, true, true);
+  const model2Load = useGLTF(Apartment.state.ModelInfo.ApartmentModelPath, true, true);
   console.log(model2Load);
   model2Load.scene.traverse((p) => {
     if (p.material) {
@@ -238,9 +239,7 @@ export default function Model3D() {
   const apartment = useRef();
   const navigate = useNavigate();
 
-  const btnInfo = apartmentInfo.state.Annotation;
-  //console.log(model2Load);
-  console.log(apartmentInfo);
+  const btnInfo = Apartment.state.ModelInfo.Annotations;
   const buttons = btnInfo.map(({ title, position, lookAt }) => (
     <button
       className=" select-none bg-blueLogo w-32 text-center h-10 whitespace-nowrap rounded-md my-2 hover:bg-contrastLogo "
@@ -282,9 +281,9 @@ export default function Model3D() {
         <PerspectiveCamera
           name="camera"
           ref={cameraRef}
-          fov={apartmentInfo.state.FOV}
-          position={apartmentInfo.state.startingCameraPosition}
-          rotation={apartmentInfo.state.target}
+          fov={Apartment.state.ModelInfo.FOV}
+          position={Apartment.state.ModelInfo.StartingPosition}
+          rotation={Apartment.state.ModelInfo.StartingRotation}
           makeDefault
         />
         <primitive
@@ -296,7 +295,7 @@ export default function Model3D() {
           dispose={null}
         />
         <Control apartment={apartment} />
-        <MirrorGenerator data={apartmentInfo.state.mirrors} />
+        <MirrorGenerator data={Apartment.state.ModelInfo.Mirrors} />
       </Canvas>
       <div
         className="hover:cursor-pointer select-none bg-blueLogo flex absolute top-10 h-10 text-center whitespace-nowrap left-10 w-32 my-2 m-4 hover:bg-contrastLogo hover:bg-opacity-75 rounded-md"

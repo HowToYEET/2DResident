@@ -9,7 +9,8 @@ import { string } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
-  const listOfImages = location.state.images;
+  console.log(location.state, "HERE")
+  const listOfImages = location.state.ApartmentInfo.images;
   const navigate = useNavigate();
   const [time, setTime] = useState(() => {
     var time = parseInt(
@@ -194,21 +195,21 @@ const Information = (apartment) => {
               <p className="text-sm font-extralight">Energy label:</p>
             </div>
             <div id="number" className=" space-y-3 text-right pr-9">
-              <p className="text-sm font-semibold">{apartment.data.sqm}m²</p>
-              <p className="text-sm font-semibold">{apartment.data.year}</p>
+              <p className="text-sm font-semibold">{apartment.data.ApartmentInfo.Squaremeter}m²</p>
+              <p className="text-sm font-semibold">{apartment.data.ApartmentInfo.Year}</p>
               <p className="text-sm font-semibold">
-                {apartment.data.roomNumber}
+                {apartment.data.ApartmentInfo.RoomNumber}
               </p>
               <p className="text-sm font-semibold">
-                {apartment.data.floornumber}.
+                {apartment.data.ApartmentInfo.FloorNumber}.
               </p>
               <p className="text-sm font-semibold">
-                {formatter.format(apartment.data.sqmPrice)}
+                {formatter.format(apartment.data.ApartmentInfo.SquaremeterPrice)}
               </p>
               <p className="text-sm font-semibold">
-                {apartment.data.priceHist}%
+                {apartment.data.ApartmentInfo.PriceHist}%
               </p>
-              <img className="h-8 ml-24" src={apartment.data.EnergyLevel} alt="" srcset="" />
+              <img className="h-8 ml-24" src={apartment.data.ApartmentInfo.EnergyLevel} alt="" srcset="" />
             </div>
           </div>
         </div>
@@ -218,9 +219,9 @@ const Information = (apartment) => {
           <div className="flex mr-40 justify-between">
             <h1 className="flex">
               <GrMoney className=" font-extralight m-2" />
-              {formatter.format(apartment.data.price)}
+              {formatter.format(apartment.data.ApartmentInfo.Price)}
             </h1>
-            {apartment.data.has3D === true ? (
+            {apartment.data.Has3D === true ? (
               <button
                 onClick={() => toSpecificApartment(apartment.data)}
                 className="btn btn-three mr-28"
@@ -234,13 +235,13 @@ const Information = (apartment) => {
           </div>
           <h1 className="flex">
             <FaHouseChimney className="place-content-center text-2xl pt-2 mx-2" />{" "}
-            {apartment.data.RoadName} {apartment.data.ZipCode}{" "}
-            {apartment.data.city}
+            {apartment.data.ApartmentInfo.RoadName} {apartment.data.ApartmentInfo.ZipCode}{" "}
+            {apartment.data.ApartmentInfo.city}
           </h1>
         </div>
         <div className="ml-24 m-4 mr-48 mt-4 font-extralight">
           <p id="description" className="">
-            {apartment.data.description}
+            {apartment.data.ApartmentInfo.Description}
           </p>
         </div>
       </div>
