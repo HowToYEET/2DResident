@@ -11,7 +11,7 @@ class Apartment {
   }
 }
 const ListOfAll = [];
-const ListOf3D = ["2", "4", "5", "7", "1", "3", "6", "8"];
+const ListOf3D = ["2", "4", "5", "7"];
 ApartmentInfo.forEach((element, counter) => {
   let threeD = ListOf3D.some((l) => element.ApartmentName.includes(l));
   let IsAlreadyIncluded = false;
