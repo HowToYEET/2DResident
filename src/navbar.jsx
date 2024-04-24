@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, ScrollRestoration } from "react-router-dom";
-import logo from "../public/ResidenceLogo.png";
+import logo from "../public/NewLogo.jpg";
 import { TiBusinessCard } from "react-icons/ti";
 export default function Nav() {
   return (

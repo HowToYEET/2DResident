@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaCoins } from "react-icons/fa";
-import { FaHouseChimney } from "react-icons/fa6";
 import ListOfApartments from "./GETGroup2.js";
 
 export default function Apartments() {
   let itemList = ListOfApartments.map((item, index) => {
     const navigate = useNavigate();
-    console.log(item.ApartmentInfo)
+    console.log(item.ApartmentInfo);
     const toSpecificApartment = (Apartment) => {
       navigate(`${index}`, { state: Apartment });
     };

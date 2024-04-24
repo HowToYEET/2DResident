@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { json, useLocation } from "react-router-dom";
-import { FaArrowRight, FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
+import { FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import { GrMoney } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
-import { string } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function SelectApartments() {
   const location = useLocation(); //use location.state to get information
-  console.log(location.state, "HERE")
+  console.log(location.state, "HERE");
   const listOfImages = location.state.ApartmentInfo.images;
   const navigate = useNavigate();
   const [time, setTime] = useState(() => {
@@ -44,7 +43,6 @@ export default function SelectApartments() {
         }}
       >
         <FaArrowLeftLong className=" text-3xl mx-3" /> <p>Go back</p>
-
       </div>
       <Carusel data={listOfImages} />
       <Information data={location.state} />
@@ -182,7 +180,7 @@ const Information = (apartment) => {
   return (
     <div className=" mt-8  w-full h-full grid grid-cols-3 overflow-x-hidden">
       <div id="Faktabox" className=" w-full">
-        <div className=" grid grid-rows-4 bg-slate-400 bg-opacity-50 m-2 pl-2 ml-40 rounded-sm over">
+        <div className=" grid grid-rows-4 bg-slate-400 bg-opacity-50 m-2 pl-2 ml-40 rounded-sm">
           <h1 className=" m-5 text-2xl">Facts of the residence</h1>
           <div className="grid grid-cols-2 row-span-3">
             <div id="measurement" className=" pl-5 space-y-3">
@@ -193,10 +191,15 @@ const Information = (apartment) => {
               <p className="text-sm font-extralight">Square meter price:</p>
               <p className="text-sm font-extralight">Price historic changes:</p>
               <p className="text-sm font-extralight">Energy label:</p>
+              <p>&nbsp;</p>
             </div>
             <div id="number" className=" space-y-3 text-right pr-9">
-              <p className="text-sm font-semibold">{apartment.data.ApartmentInfo.Squaremeter}m²</p>
-              <p className="text-sm font-semibold">{apartment.data.ApartmentInfo.Year}</p>
+              <p className="text-sm font-semibold">
+                {apartment.data.ApartmentInfo.Squaremeter}m²
+              </p>
+              <p className="text-sm font-semibold">
+                {apartment.data.ApartmentInfo.Year}
+              </p>
               <p className="text-sm font-semibold">
                 {apartment.data.ApartmentInfo.RoomNumber}
               </p>
@@ -204,12 +207,19 @@ const Information = (apartment) => {
                 {apartment.data.ApartmentInfo.FloorNumber}.
               </p>
               <p className="text-sm font-semibold">
-                {formatter.format(apartment.data.ApartmentInfo.SquaremeterPrice)}
+                {formatter.format(
+                  apartment.data.ApartmentInfo.SquaremeterPrice
+                )}
               </p>
               <p className="text-sm font-semibold">
                 {apartment.data.ApartmentInfo.PriceHist}%
               </p>
-              <img className="h-8 ml-24" src={apartment.data.ApartmentInfo.EnergyLevel} alt="" srcset="" />
+              <img
+                className="h-8 ml-40"
+                src={apartment.data.ApartmentInfo.EnergyLevel}
+                alt=""
+                srcset=""
+              />
             </div>
           </div>
         </div>
@@ -234,9 +244,10 @@ const Information = (apartment) => {
             )}
           </div>
           <h1 className="flex">
-            <FaHouseChimney className="place-content-center text-2xl pt-2 mx-2" />{" "}
-            {apartment.data.ApartmentInfo.RoadName} {apartment.data.ApartmentInfo.ZipCode}{" "}
-            {apartment.data.ApartmentInfo.city}
+            <FaHouseChimney className="place-content-center text-2xl pt-2 mx-2" />
+            {apartment.data.ApartmentInfo.ApartmentName},&nbsp;
+            {apartment.data.ApartmentInfo.ZipCode}&nbsp;
+            {apartment.data.ApartmentInfo.CityName}
           </h1>
         </div>
         <div className="ml-24 m-4 mr-48 mt-4 font-extralight">

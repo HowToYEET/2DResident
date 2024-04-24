@@ -41,8 +41,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage></ErrorPage>}
         element={
           <Suspense fallback={<LoadingModel />}>
-            {" "}
-            <TheModel />{" "}
+            <TheModel />
           </Suspense>
         }
       />

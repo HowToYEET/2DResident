@@ -9,12 +9,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useLocation } from "react-router-dom";
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-import { FaArrowRight, FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
-import { element } from "three/examples/jsm/nodes/shadernode/ShaderNode";
+import { FaArrowLeftLong } from "react-icons/fa6";
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
 const Control = (apartment) => {
@@ -153,6 +149,7 @@ const Control = (apartment) => {
     if (moveBackward == true) {
       intersects.forEach((element) => {
         if (element.distance < MINIMUM_DIST) {
+          camera.position.set(position.x, position.y, position.z);
         }
       });
       position = {
@@ -226,9 +223,13 @@ export default function Model3D() {
   Timer();
   document.getElementsByTagName("body")[0].appendChild(styleElement);
   const Apartment = useLocation();
-  console.log(Apartment)
+  console.log(Apartment);
   const cameraRef = useRef(null);
-  const model2Load = useGLTF(Apartment.state.ModelInfo.ApartmentModelPath, true, true);
+  const model2Load = useGLTF(
+    Apartment.state.ModelInfo.ApartmentModelPath,
+    true,
+    true
+  );
   console.log(model2Load);
   model2Load.scene.traverse((p) => {
     if (p.material) {
@@ -303,7 +304,8 @@ export default function Model3D() {
           navigate(-1);
         }}
       >
-        <FaArrowLeftLong className=" text-3xl mx-3 text-center my-1" /> <p className=" my-2">Go back</p>
+        <FaArrowLeftLong className=" text-3xl mx-3 text-center my-1" />{" "}
+        <p className=" my-2">Go back</p>
       </div>
       <div className="absolute top-32 left-10 w-20 m-4 opacity-75">
         {buttons}
@@ -329,7 +331,6 @@ function Timer() {
   useEffect(() => {
     const interval = setInterval(() => {
       time += 1;
-      //console.log(time);
       window.localStorage.setItem(
         "IndividualApartmentTimeSpentInSeconds" + location.pathname,
         time

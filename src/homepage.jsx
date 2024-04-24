@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactTyped } from "react-typed";
-import { FaArrowDown, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 export default function HomePage() {
   const navigate = useNavigate();
