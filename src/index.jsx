@@ -1,19 +1,19 @@
-import "./index.css";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import Apartments from "./Apartments.jsx";
-import HomePage from "./homepage.jsx";
-import SpecificApartment from "./SelectApartment.jsx";
-import ErrorPage from "./Error-page.jsx";
-import TheModel from "./ModelShow3D.jsx";
-import LoadingModel from "./LoadingModel.js";
 import {
   createBrowserRouter,
-  RouterProvider,
-  Route,
   createRoutesFromElements,
+  Route,
+  RouterProvider,
 } from "react-router-dom";
+import Apartments from "./Apartments.jsx";
+import App from "./App.jsx";
+import ErrorPage from "./Error-page.jsx";
+import HomePage from "./homepage.jsx";
+import "./index.css";
+import LoadingModel from "./LoadingModel.js";
+import TheModel from "./ModelShow3D.jsx";
+import SpecificApartment from "./SelectApartment.jsx";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 

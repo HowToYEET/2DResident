@@ -1,4 +1,3 @@
-import Energy from "./GETEnergy.js";
 import ApartmentInfo from "./GetApartmentInfo.js";
 import ModelInfo from "./GetModelInfo.js";
 

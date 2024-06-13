@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from "react";
 import {
   Environment,
-  PerspectiveCamera,
   MeshReflectorMaterial,
+  PerspectiveCamera,
   useGLTF,
 } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useLocation } from "react-router-dom";
-import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { useLocation, useNavigate } from "react-router-dom";
+import * as THREE from "three";
 const _euler = new THREE.Euler(0, 0, 0, "YXZ");
 
 const Control = (apartment) => {

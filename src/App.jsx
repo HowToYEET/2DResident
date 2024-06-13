@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Nav from "./navbar.jsx";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer.jsx";
+import Nav from "./navbar.jsx";
 export default function LandingPage() {
   //localStorage.clear();
 
@@ -12,7 +12,7 @@ export default function LandingPage() {
       </div>
       <div>
         <Outlet id="ContentCenter" />
-      </div>{" "}
+      </div>
       <div className=" ">
         <Footer />
       </div>

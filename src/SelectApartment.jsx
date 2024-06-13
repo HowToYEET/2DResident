@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { json, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong, FaHouseChimney } from "react-icons/fa6";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 import { GrMoney } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import React from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ReactTyped } from "react-typed";
-import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 export default function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
